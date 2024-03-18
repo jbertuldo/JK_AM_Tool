@@ -810,3 +810,23 @@ __webpack_require__.r(__webpack_exports__);
 
         commentInput.value = '';
     }
+  function addTask() {
+      var taskInput = document.getElementById("task").value;
+      var dueDateInput = document.getElementById("dueDate").value;
+      var dueTimeInput = document.getElementById("dueTime").value;
+      
+      var taskList = document.getElementById("taskList");
+      var li = document.createElement("li");
+      li.innerHTML = taskInput + " - Due Date: " + dueDateInput + " Due Time: " + dueTimeInput;
+      taskList.appendChild(li);
+      
+      var dateToSet = new Date(dueDateInput + " " + dueTimeInput);
+      var currentDate = new Date();
+      var timeDifference = dateToSet.getTime() - currentDate.getTime();
+      
+      if (timeDifference > 0) {
+        setTimeout(function() {
+          alert("Task '" + taskInput + "' is due now!");
+        }, timeDifference);
+      }
+    }
